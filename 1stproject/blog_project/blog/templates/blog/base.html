@@ -1,0 +1,68 @@
+<!-- blog/templates/blog/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        /* Basic Dark Mode Styling */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header.dark-mode, nav.dark-mode {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        /* Style for the Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            padding: 0.5em;
+            margin-left: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- JavaScript for Dark Mode Toggle -->
+    <script>
+        // Check if dark mode preference is saved in local storage
+        document.addEventListener("DOMContentLoaded", function() {
+            if (localStorage.getItem("dark-mode") === "enabled") {
+                document.body.classList.add("dark-mode");
+            }
+        });
+
+        // Toggle dark mode and save preference in local storage
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("dark-mode", "enabled");
+            } else {
+                localStorage.setItem("dark-mode", "disabled");
+            }
+        }
+    </script>
+
+    <header class="{% if request.session.dark_mode %}dark-mode{% endif %}">
+        <h1>My Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'post_list' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><button onclick="toggleDarkMode()" class="dark-mode-toggle">Toggle Dark Mode</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Content Section -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

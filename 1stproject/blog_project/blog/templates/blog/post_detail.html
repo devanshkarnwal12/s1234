@@ -1,0 +1,161 @@
+{% load static %}  <!-- This line loads the static tag library -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Featured Posts Section -->
+    <section>
+        <h2>Featured Posts</h2>
+        <div>
+            {% for featured_post in featured_posts %}
+                <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <h3>
+                        <a href="{% url 'post_detail' pk=featured_post.pk %}">{{ featured_post.title }}</a>
+                    </h3>
+                    <p>{{ featured_post.content|truncatewords:20 }}</p>
+                    <p><em>Published on {{ featured_post.published_date|date:"F j, Y" }}</em></p>
+                </div>
+            {% empty %}
+                <p>No featured posts available.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Post Details Section -->
+    <article>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p><strong>Views:</strong> {{ post.views_count }}</p>
+        <p><em>Published on {{ post.published_date|date:"F j, Y" }}</em></p>
+    </article>
+
+    
+    <!-- Category Section -->
+    <p><strong>Category:</strong> 
+        {% if post.category %}
+            <a href="{% url 'posts_by_category' category_id=post.category.id %}">{{ post.category.name }}</a>
+        {% else %}
+            <span>No Category Available</span>
+        {% endif %}
+    </p>
+
+    <!-- Tags Section -->
+    <p><strong>Tags:</strong> 
+        {% for tag in post.tags.all %}
+            <a href="{% url 'posts_by_tag' tag_id=tag.id %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    <!-- Bookmark Section -->
+    {% if user.is_authenticated %}
+    <form action="{% url 'toggle_bookmark' post.id %}" method="post">
+        {% csrf_token %}
+        {% if post in user.bookmarked_posts.all %}
+            <button type="submit" class="btn btn-warning">Remove Bookmark</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary">Add to Bookmarks</button>
+        {% endif %}
+    </form>
+    {% else %}
+    <p>Please <a href="{% url 'login' %}">log in</a> to bookmark posts.</p>
+    {% endif %}
+
+    <!-- Like and Share Section -->
+    <div>
+        <form method="POST" action="{% url 'like_post' post.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">
+                {% if user in post.likes.all %}
+                    Unlike
+                {% else %}
+                    Like
+                {% endif %}
+            </button>
+            <span>{{ post.likes.count }} likes</span>
+        </form>
+
+        <div>
+            <strong>Share:</strong>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">Facebook</a>
+            <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ post.title }}">Twitter</a>
+        </div>
+    </div>
+
+    <!-- Toggle Featured Status -->
+    {% if user.is_authenticated %}
+    <form action="{% url 'toggle_featured' pk=post.pk %}" method="post" style="margin-top: 20px;">
+        {% csrf_token %}
+        {% if post.is_featured %}
+            <button type="submit" class="btn btn-danger">Unfeature Post</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary">Feature Post</button>
+        {% endif %}
+    </form>
+    {% else %}
+    <p>Please <a href="{% url 'login' %}">log in</a> to feature/unfeature posts.</p>
+    {% endif %}
+
+    <!-- Related Posts Section -->
+    <h3>Related Posts</h3>
+    <ul>
+        {% for related_post in related_posts %}
+            <li>
+                <a href="{% url 'post_detail' pk=related_post.pk %}">{{ related_post.title }}</a>
+            </li>
+        {% empty %}
+            <li>No related posts found.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Comments Section -->
+    <h2>Comments</h2>
+    {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-secondary">Submit Comment</button>
+        </form>
+    {% else %}
+        <p>Please log in to post a comment.</p>
+    {% endif %}
+
+    <!-- Display Top-level Comments and Replies -->
+    <h3>Top-level Comments</h3>
+    {% for comment in comments %}
+        <div style="margin-bottom: 20px;">
+            <p><strong>{{ comment.user.username }}</strong> said: {{ comment.content }}</p>
+            <p>Posted on: {{ comment.created_at|date:"F j, Y" }}</p>
+
+            <!-- Replies Section for Each Comment -->
+            <h4>Replies:</h4>
+            {% for reply in replies %}
+                {% if reply.parent == comment %}
+                    <div style="margin-left: 20px;">
+                        <p><strong>{{ reply.user.username }}</strong> replied: {{ reply.content }}</p>
+                        <p>Posted on: {{ reply.created_at|date:"F j, Y" }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Reply Form for Each Comment -->
+            {% if user.is_authenticated %}
+                <h5>Reply to this comment:</h5>
+                <form method="POST" action="{% url 'post_detail' pk=post.pk %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="hidden" name="parent" value="{{ comment.id }}">
+                    <button type="submit" class="btn btn-secondary">Reply</button>
+                </form>
+            {% else %}
+                <p>Please log in to reply to this comment.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>

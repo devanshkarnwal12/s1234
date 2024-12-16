@@ -1,0 +1,28 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h2>Subscribe to our Blog</h2>
+    
+    <p>Stay updated with the latest posts by subscribing to our blog.</p>
+
+    <!-- Subscription Form -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  
+        <button type="submit">Subscribe</button>
+    </form>
+
+    <!-- Display Success or Error Messages -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{% if message.tags == 'success' %}
+                    <strong>Success:</strong> {{ message }}
+                {% else %}
+                    <strong>Notification:</strong> {{ message }}
+                {% endif %}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+{% endblock %}

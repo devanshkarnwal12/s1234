@@ -1,0 +1,22 @@
+<!-- homepage.html -->
+<h2>Featured Posts</h2>
+<ul>
+    {% for post in featured_posts %}
+        <li>
+            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+            <p>{{ post.content|truncatewords:20 }}</p>  <!-- Truncate content for preview -->
+        </li>
+    {% empty %}
+        <p>No featured posts available.</p>
+    {% endfor %}
+</ul>
+
+<!-- Other posts -->
+<h2>All Posts</h2>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

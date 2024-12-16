@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Toggle Example</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Light mode styles (default) */
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        /* Button styles */
+        .toggle-btn {
+            padding: 10px 20px;
+            background-color: #008cba;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+        }
+
+        .toggle-btn:hover {
+            background-color: #005f5f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toggle button to switch themes -->
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+    <h1>Welcome to the Dark Mode Example</h1>
+    <p>This is a sample text to demonstrate dark and light themes.</p>
+
+    <script>
+        // Function to toggle between dark and light themes
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            // Save the user's theme preference in localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        };
+    </script>
+</body>
+</html>

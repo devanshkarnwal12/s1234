@@ -1,0 +1,40 @@
+<!-- dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}"> 
+</head>
+<body>
+
+<div class="dashboard-container">
+    <h1>Admin Dashboard</h1>
+    
+    <div class="dashboard-stats">
+        <div class="stat-item">
+            <h2>Total Posts</h2>
+            <p>{{ post_count }}</p>
+        </div>
+        
+        <div class="stat-item">
+            <h2>Total Comments</h2>
+            <p>{{ total_comments }}</p>
+        </div>
+        
+        <div class="stat-item">
+            <h2>Total Likes</h2>
+            <p>{{ total_likes }}</p>
+        </div>
+        
+        <div class="stat-item">
+            <h2>Total Users</h2>
+            <p>{{ user_count }}</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

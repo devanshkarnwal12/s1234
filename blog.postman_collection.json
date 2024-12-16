@@ -1,0 +1,787 @@
+{
+	"info": {
+		"_postman_id": "c8bc949f-6c55-460d-a86e-99914da1cded",
+		"name": "blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39780630",
+		"_collection_link": "https://blog-app-3067.postman.co/workspace/blog-app-Workspace~d709d501-2a4a-4dce-8037-fdb407adabc0/collection/39780630-c8bc949f-6c55-460d-a86e-99914da1cded?action=share&source=collection_link&creator=39780630"
+	},
+	"item": [
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"devanshkarnwal\",\n    \"password\": \"1234\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user registation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"dev\",\n    \"email\":\"devansh@gmail.com\",\n    \"password1\": \n        \"dev123456\"\n    ,\n    \"password2\": \n        \"dev123456\"   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTA2Njk3LCJpYXQiOjE3MzIxMDYzOTcsImp0aSI6IjI4YjlhNGJjZjkwMDQyYjRhNDA1ZDcxNmRjOWIzOTY3IiwidXNlcl9pZCI6MX0._sxu9psX9eSMYtNx0Cnkdpv_xhUgFA30xbKlPOAE8I8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"post\": 4,               // ID of the associated post (integer)\n    \"user\": 1,               // ID of the user making the comment (integer)\n    \"content\": \"This is a comment example.\",  // The actual content of the comment\n    \"created_at\": \"2024-11-20T12:00:00Z\",    // DateTime in ISO 8601 format (optional for creation)\n    \"updated_at\": \"2024-11-20T12:00:00Z\",    // DateTime in ISO 8601 format (optional for creation)\n    \"parent\": null,          // ID of the parent comment for replies, or null for root comments\n    \"approved\": false        // Boolean indicating if the comment is approved\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/comments/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get all user",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTcxMDEzLCJpYXQiOjE3MzIxNzA3MTMsImp0aSI6IjRhODVmMGE4MzE3NDQ2N2FiMDNhYTE1MDU3YTA0ZTQ0IiwidXNlcl9pZCI6MX0.etR4tsnD5N24Kr48i0aia3MeA-c-j5WprpKMp7c9dhk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTcxNTgzLCJpYXQiOjE3MzIxNzEyODMsImp0aSI6Ijk3NGNiMGQxZjI5MzQzNzc4MmJiNDRkN2I2YTM0MWI4IiwidXNlcl9pZCI6MX0.qFSy9rB5TIa2UBMOJrGvd7pJBZ35GfgMMzvOfWqQe2g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/profile/update/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"profile",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User (Admin only)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMTcyNjYwLCJpYXQiOjE3MzIxNzIzNjAsImp0aSI6Ijg1MWRmZDhkZTg5NzRhYTFiODU1YzE5YTk3NmEwMzkwIiwidXNlcl9pZCI6MX0.pj2TXO2ZEmVHQDMnPoWUpnnxhXJAshPlsIpH3_uS1Fo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/users/1/delete/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"users",
+						"1",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALL POSTS",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Posts by ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update post",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjU3NjkyLCJpYXQiOjE3MzIyNTczOTIsImp0aSI6IjlhODk4Njk4NTZlMzRkMzM5Nzc0NGU2MzZmMmIxZThjIiwidXNlcl9pZCI6MX0.fbAP5-vIgamZuhEThrft9hZqS8timJHySHJpe8pNeYE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"title\": \"Updated Title\",\n  \"content\": \"Updated content of the post.\",\n  \"author\": 1,\n  \"category\": 1,\n  \"status\": \"published\",\n  \"published_date\": \"2024-11-22T10:00:00Z\"\n}\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/posts/2/delete/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"posts",
+						"2",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Posts",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjU4MjA3LCJpYXQiOjE3MzIyNTc5MDcsImp0aSI6ImQ3Yzg1MjVkOGE1NDQ3ZGRhMTFkNzY1ZTFiNzk1OGFlIiwidXNlcl9pZCI6MX0.0fyLEDTeoa8erGgeQZ81ySfPQGQEldnFhplaSUxNaHE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/posts/2/delete/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"posts",
+						"2",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjU4NzEzLCJpYXQiOjE3MzIyNTg0MTMsImp0aSI6IjRkOGRjZDkzMzFmYjQ2OGFiMTQ2ZjYxYzk5ZTFjYzY4IiwidXNlcl9pZCI6MX0.i1mSNoov1uAIco-21Y-s1MAtn0Vu5nnh8ci2iatWr4E",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"post\": 3,\n    \"user\": 1,\n    \"content\": \"This is a comment on the post.\",\n    \"approved\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/api/posts/3/comments/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"api",
+						"posts",
+						"3",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all comments",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjYxNTI3LCJpYXQiOjE3MzIyNjEyMjcsImp0aSI6IjE1OTc4M2VjYTY0YzQ4MWZhZWRjYzVlM2NmNTZhN2Q0IiwidXNlcl9pZCI6MX0.pxQR7FcAWbLRGY8hFmarStZ9S5-wn_x_xtCJs6ATojs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n  {\n    \"id\": 1,\n    \"post\": 3,\n    \"user\": 1,\n    \"content\": \"This is a comment\",\n    \"created_at\": \"2024-11-22T10:00:00Z\",\n    \"updated_at\": \"2024-11-22T10:00:00Z\",\n    \"parent\": null,\n    \"approved\": true\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/posts/3/comments/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"posts",
+						"3",
+						"comments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Comment",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjY0NDIxLCJpYXQiOjE3MzIyNjQxMjEsImp0aSI6ImViMzU2NGJlMjU2ZjQ1ZDFiNWM5MTM5YjgxYTZmODk1IiwidXNlcl9pZCI6MX0.WAgat3_BcQ_uLpEbZUZFMJQNXIkwA_REoQHb1fL8Wiw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/comments/1/delete/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"comments",
+						"1",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjY0ODA4LCJpYXQiOjE3MzIyNjQ1MDgsImp0aSI6ImNkZDZkYzNkODlkNjQ5M2E4NTFjNjBlZTM5NjFlMDg1IiwidXNlcl9pZCI6MX0.-G7O_-yBtG7wAsfQarhz7s8LPeb0WwRdLafNBCECPAA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 3,\n    \"name\": \"New Category\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/categories/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"categories",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Category",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update Category",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjY2MDk1LCJpYXQiOjE3MzIyNjU3OTUsImp0aSI6ImY1MmY0ZTgyY2FlODQ3MDk5ZjU0NmMzZDdkN2ZlMDgwIiwidXNlcl9pZCI6MX0.IW27cYz6lxS9QJVrEv-CM1ldjIU9VFhZ7R623cualK8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Tech\"\n    \n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/categories/1/update/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"categories",
+						"1",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Category",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjY3MDk0LCJpYXQiOjE3MzIyNjY3OTQsImp0aSI6ImM5NjdhNzJmYWNhNzRjNTFhOTQxOTQxZWI4ODgzOTEwIiwidXNlcl9pZCI6MX0.3v1-wC3NE-iEN_j3fohPDiQQk8qsC3HdOiMSUSxg90c",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/categories/2/delete/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"categories",
+						"2",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjY3NjY2LCJpYXQiOjE3MzIyNjczNjYsImp0aSI6IjNmZDE3NjE1NjI0YjQxOTViODc0YzYwMmVhMzMzODA0IiwidXNlcl9pZCI6MX0.QxvXs7MztW0q9coptBgD8irmtk6Z1LPMF7rpbxcyWrI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1,\n  \"name\": \"Technology\",\n  \"slug\": \"technology\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/tags/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"tags",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ALL TAGS",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tags",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjY4MjYwLCJpYXQiOjE3MzIyNjc5NjAsImp0aSI6IjkxM2ExMTAzY2RiODQ1MTJhNTA3ZjdjMGJmMDNjMzc1IiwidXNlcl9pZCI6MX0.ZawaY-q1MayRRlYnBUtIzbIy3WHS_wSJcxI0Lz3kNNI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/tags/1/delete/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"tags",
+						"1",
+						"delete",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Post",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjcwMTI0LCJpYXQiOjE3MzIyNjk4MjQsImp0aSI6ImRhYWJhZTkxM2I2ZDQ2MDBiNDY2ZTc1YzAwYTAwY2E0IiwidXNlcl9pZCI6MX0.3a9UEMenx3azDPP2gpg2_QemLkjdMavxQbtAIQaJvGU",
+						"description": "Bearer",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/posts/3/like/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"posts",
+						"3",
+						"like",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Featured Posts",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyMjczMzY2LCJpYXQiOjE3MzIyNzMwNjYsImp0aSI6IjFiNGVlYjdjZjZiODQwMjRiZmZiYmVlOWFjZWM0MThiIiwidXNlcl9pZCI6MX0.g2MAOYajlYqPqZcoRXY0uKhzaKguLnAjPMRNfXBZZnU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"My First Post\",\n    \"content\": \"This is the content of my first post.\",\n    \"category\": 1,  // Provide the ID of an existing category\n    \n    \"author\": 1,  // Provide the ID of an existing user\n    \"share_count\": 0,\n    \"views_count\": 0,\n    \"published_date\": \"2024-11-22T12:00:00Z\",\n    \"is_featured\": true,\n    \"user\": 1,  // Provide the ID of an existing user\n    \"status\": \"published\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:2222/posts/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "2222",
+					"path": [
+						"posts",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

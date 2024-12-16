@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts in {{ category.name }}</title>
+</head>
+<body>
+    <h1>Posts in Category: {{ category.name }}</h1>
+    <a href="{% url 'post_list' %}">Back to All Posts</a>
+    
+    {% if posts %}
+        {% for post in posts %}
+            <div>
+                {% if post.pk %}
+                    <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                {% else %}
+                    <p>Post ID missing for "{{ post.title }}"</p>
+                {% endif %}
+                <p><em>Published on {{ post.created_at|date:"F j, Y" }}</em></p>
+                <p>{{ post.content|truncatewords:20 }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No posts found in this category.</p>
+    {% endif %}
+</body>
+</html>

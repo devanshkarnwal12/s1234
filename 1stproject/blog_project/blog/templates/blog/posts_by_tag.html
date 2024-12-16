@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts with Tag: {{ tag.name }}</title>
+</head>
+<body>
+    <h1>Posts with Tag: {{ tag.name }}</h1>
+    <a href="{% url 'post_list' %}">Back to All Posts</a>
+    
+    {% if posts %}
+        {% for post in posts %}
+            <div>
+                <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                <p><em>Published on {{ post.created_at|date:"F j, Y" }}</em></p>
+                <p>{{ post.content|truncatewords:20 }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No posts found with this tag.</p>
+    {% endif %}
+</body>
+</html>

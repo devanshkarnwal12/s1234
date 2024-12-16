@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Posts</title>
+</head>
+<body>
+    <h1>Search Posts</h1>
+    
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'post_search' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search by title, content, or author">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Display Posts -->
+    {% if posts %}
+        <h2>Results:</h2>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    <p>{{ post.content|slice:":100" }}...</p>
+                    <p>By {{ post.author.username }} on {{ post.created_at|date:"F j, Y" }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts found matching your search query.</p>
+    {% endif %}
+</body>
+</html>

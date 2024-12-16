@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarked Posts</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>My Bookmarked Posts</h1>
+        <button id="theme-toggle">Toggle Dark Mode</button>
+    </header>
+
+    <main>
+        {% if posts %}
+            <ul>
+                {% for post in posts %}
+                    <li>
+                        <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+                        <p>Bookmarked on: {{ post.bookmark_set.first.created_at|date:"F j, Y" }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You haven't bookmarked any posts yet.</p>
+        {% endif %}
+    </main>
+
+    <footer>
+        <nav>
+            <a href="{% url 'post_list' %}">Back to All Posts</a> |
+            <a href="{% url 'bookmarked_posts' %}">Refresh Bookmarks</a>
+        </nav>
+    </footer>
+
+    <script src="{% static 'js/theme-toggle.js' %}"></script>
+</body>
+</html>

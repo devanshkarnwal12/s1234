@@ -1,0 +1,35 @@
+<!-- blog/templates/blog/question_solution_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question and Solution List</title>
+    
+    <!-- Load the static tag library -->
+    {% load static %}
+
+    <!-- Link to your static CSS file -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>All Questions and Solutions</h2>
+
+        {% if solutions %}
+            <ul>
+                {% for solution in solutions %}
+                    <li>
+                        <div class="question-solution">
+                            <!-- Your content here -->
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No solutions available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
